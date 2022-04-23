@@ -3,46 +3,52 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
-
+  const API_URL = 'https://coddets.com/api/quizbox/index.php';
   const [question, setQuestion] = useState(false);
   const [isAnswerShown, setShowAnswer] = useState(false);
-  const [isNextButtonShown, setShowNextButton] = useState(false);
 
   useEffect(() => {
-    axios({
-      method: 'get',
-      withCredentials: false,
-      url: 'https://coddets.com/api/quizbox/index.php'
-    })
-    .then(res => {
-      const question = res.data;
-      // console.log(question, question.question_text);
-      setQuestion(question);
-    });
+    bringQuestion();
   }, [])  
 
   const showAnswer = () => {
     setShowAnswer(true);
-    setShowNextButton(true);
-    console.log(isAnswerShown);
   }
   
+  const bringQuestion = () => {
+    axios({
+      method: 'get',
+      withCredentials: false,
+      url: API_URL
+    })
+    .then(res => {
+      const question = res.data;
+      setShowAnswer(false);
+      setQuestion(question);
+    });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <p className='Question-Text'>{question.question_text}</p>
-        <button 
-          className='Answer-Button'
-          onClick={showAnswer}
-        >Answer</button>
-
-        { isAnswerShown ? <p className='Answer-Text'>{question.answer_text}</p> : null}
-        
-        <button 
-          className='Next-Button'
-          onClick={setQuestion}
-        >Next</button>
-
+        <h1 className='Question-Text'>{question.question_text}</h1>        
+        { !isAnswerShown ? 
+          <button 
+            className='Answer-Button Primary-Button'
+            onClick={showAnswer}
+          >Answer</button> 
+          : null
+        }
+        { isAnswerShown ? 
+          <>
+            <h2 className='Answer-Text'>{question.answer_text}</h2> 
+            <button 
+              className='Next-Button Primary-Button'
+              onClick={bringQuestion}
+            >Next</button>
+          </>
+          : null
+        }
       </header>
     </div>
   );

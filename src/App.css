@@ -1,3 +1,6 @@
+*{
+  font-family: 'Noto Sans Malayalam', sans-serif;
+}
 .App {
   text-align: center;
 }
@@ -22,17 +25,58 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 2rem;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.Question-Text {
+  background: #a5aaeb;
+  background: linear-gradient(to right, #60fff2 0%, #d56969 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  max-width: 100%;
+}
+
+.Answer-Text {
+  background: #ffc500;
+  background: linear-gradient(to right, #c21500 0%, #ffc500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  max-width: 100%;
+}
+
+.Primary-Button {
+  display: inline-block;
+  padding: 1em 3em;
+  border: 0.16em solid #FFFFFF;
+  margin: 0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-family: 'Roboto',sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #FFFFFF;
+  text-align: center;
+  transition: all 0.15s;
+  background-color: transparent;
+  cursor: pointer;
+}
+.Primary-Button:hover{
+  color:#DDDDDD;
+  border-color:#DDDDDD;
+}
+.Primary-Button:active{
+  color:#BBBBBB;
+  border-color:#BBBBBB;
+}
+@media all and (max-width:30em){
+  .Primary-Button{
+    display:block;
+    margin:0.4em auto;
   }
 }
