@@ -30,26 +30,38 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1 className='Question-Text'>{question.question_text}</h1>        
-        { !isAnswerShown ? 
-          <button 
-            className='Answer-Button Primary-Button'
-            onClick={showAnswer}
-          >Answer</button> 
-          : null
+      <div className="App-header">
+        {  !question  ? 
+        
+          <div className='Loading-Block'>
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+          </div>
+
+        :
+
+          <div className='Quiz-Block'>
+            <h1 className='Question-Text'>{question.question_text}</h1>        
+            { !isAnswerShown ? 
+              <button 
+                className='Answer-Button Primary-Button'
+                onClick={showAnswer}
+              >Answer</button> 
+              : null
+            }
+            { isAnswerShown ? 
+              <>
+                <h2 className='Answer-Text'>{question.answer_text}</h2> 
+                <button 
+                  className='Next-Button Primary-Button'
+                  onClick={bringQuestion}
+                >Next</button>
+              </>
+              : null
+            }
+          </div>
+
         }
-        { isAnswerShown ? 
-          <>
-            <h2 className='Answer-Text'>{question.answer_text}</h2> 
-            <button 
-              className='Next-Button Primary-Button'
-              onClick={bringQuestion}
-            >Next</button>
-          </>
-          : null
-        }
-      </header>
+      </div>
     </div>
   );
 }
